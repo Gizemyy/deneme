@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block body%}
+    <form method="POST" class="uniForm" style="width: 40rem; margin-left: 400px" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1>Profile</h1>
+         {{ form|crispy }}
+        <br>
+        <input type="submit" class="btn btn-primary" type="submit" style="color: darksalmon" value="Güncelle">
+    </form>
+{% endblock %}

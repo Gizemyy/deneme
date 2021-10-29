@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block body%}
+<div class="container">
+  <div class="row">
+    <div class="col">
+    </div>
+    <div class="col">
+            <div class="card text-center" style="width: 40rem;height: 600px">
+              <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="true" href="#">Profile</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'ask:myquestions' %}"> My Questions</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:profilefollowingspace' id=user.id %}" tabindex="-1" aria-disabled="true">Following</a>
+                  </li>
+                </ul>
+              </div>
+
+
+              <div class="card-body">
+                  <img src="{{ profile.image_url|default_if_none:'#' }}" width="150" height="150" style="border-radius: 100px; "/>
+                <h5 class="card-title">{{ request.user.get_full_name }}</h5>
+                <p class="card-text">
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">Full Name: {{ request.user.get_full_name }}</li>
+                          <li class="list-group-item">Email: {{ request.user.email }}</li>
+                          <li class="list-group-item">Birthday: {{ profile.birthday }}</li>
+                          <li class="list-group-item">City: {{ profile.city  }}</li>
+
+                        </ul>
+                  </p>
+                <a href="{% url 'accounts:edit' %}" class="btn btn-primary">Edit Profile</a>
+              </div>
+            </div>
+
+
+
+
+    </div>
+    <div class="col">
+
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

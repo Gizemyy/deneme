@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+{% block body%}
+    <div class="container" style="background-color: #d2d4d2; height: 320px; max-width: 2000px ">
+        <div class="container" style="background-color: #e4e6e4; padding-top: 60px; padding-right: 50px">
+            <img src="{{ space.image_url|default_if_none:'#' }}" width="200" height="200" style="border-radius: 200px; float: left"/>
+            <h1 style="color: #B9272BFF;text-transform: uppercase"> {{ space.title }}</h1>
+        </div>
+
+        <div style="padding-top: 30px; padding-left: 60px">
+            <form method="POST">
+                {% csrf_token %}
+                    {% if follow %}
+                        <a href="{% url 'space:follow' slug=space.slug  %}" class="btn btn-secondary" role="button" data-mdb-toggle="button" aria-pressed="true">Unfollow</a>
+                    {% else %}
+                        <a href="{% url 'space:follow' slug=space.slug %}" class="btn btn-success" role="button" data-mdb-toggle="button" aria-pressed="true">Follow</a>                    {% endif %}
+            </form>
+        </div>
+    </div>
+
+
+    <div class="card text-center"  style="margin-left: 100px; width: 850px; background-color: #F1F2F2">
+      <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" style="background-color: #F1F2F2" aria-current="true" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'space:askinspace' slug=space.slug%}">Questions</a>
+          </li>
+
+        </ul>
+      </div>
+      <div class="card-body">
+          <div style="margin-top: 10px"></div>
+          <h5 style="text-align: left">Details</h5>
+        <div class="container" style="background-color: #ffffff; height: auto;">
+            {{ space.description }}
+        </div>
+          <h5 style="text-align: left">Owner</h5>
+        <div class="container" style="background-color: #ffffff; height: auto; text-align: left ">
+                {{ space.author.get_full_name }}
+        </div>
+
+          <div style="margin-top: 40px"></div>
+          <h5 style="text-align: left">People</h5>
+        <div class="container-fluid" style="background-color: #ffffff; height: auto;">
+                  <ul class="list-group list-group-flush">
+
+                    {% for follower in space.followers.all %}
+                        <li class="list-group-item" style="text-transform: capitalize; text-align: left"> {{ follower.get_full_name }}</li>
+                    {% endfor %}
+                  </ul>
+              <div style="padding-top: 10px"></div>
+
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block body%}
+<div class="container" style=" padding-left: 60px; padding-right: 50px">
+  <div class="row">
+    <div class="col-md" >
+
+    </div>
+    <div class="col-md"  style="padding-top: 50px">
+      <div class="card" style="width: 50rem;  height: 150px" >
+              <div class="card-body" style="background-color: #ffffff">
+
+                    {% for question in question_list %}
+                            <div class="card" style="width:auto; height: auto" >
+                              <div class="card-body" style="background-color : #ffffff;">
+                               <small>{{ question.user.get_full_name }} asked</small><br>
+                                  {{ question.question }}<br>
+                              </div>
+                            </div>
+                         <div style="padding-bottom: 25px"></div>
+                    {% endfor %}
+                    {% for question in space_question_list %}
+                            <div class="card" style="width:auto; height: auto" >
+                              <div class="card-body" style="background-color : #ffffff;">
+                               <small>{{ question.user.get_full_name }} asked</small>
+                                   in <small style="text-transform: uppercase">{{ question.category}}</small><br>
+                                  {{ question.question }}<br>
+                              </div>
+                            </div>
+                         <div style="padding-bottom: 25px"></div>
+                    {% endfor %}
+
+              </div>
+      </div>
+</div>
+<div class="col-md" >
+
+</div>
+
+  </div>
+</div>
+
+{% endblock %}

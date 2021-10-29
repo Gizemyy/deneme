@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+            </div>
+            <div class="col">
+                     <div class="card" style="width: 40rem; height: auto" >
+                          <div class="card-body" style="background-color : #ffffff;">
+                           <small>{{ question.user.get_full_name }} asked</small>
+                            <small style="float: right">{{ question.publishing_date }}</small>
+                                 <h5 class="card-title">{{ question.question }}</h5><br>
+                              {% if question.picture %}
+                                <p><img src="{{ question.picture.url }}" style="box-sizing: border-box; max-width: 100%; margin-left: auto; margin-right: auto;"> </p>
+                                {% endif %}
+
+                              {% include 'add_comment.html' %}
+                          <hr>
+                              <form method="POST">
+                                {% csrf_token %}
+                                    {% if upvote %}
+                                        <a href="{% url 'ask:upvote' slug=question.slug  %}" class="btn btn-success active"
+                                           role="button" data-mdb-toggle="button" aria-pressed="true">Upvoted</a>
+                                    {% else %}
+                                        <a href="{% url 'ask:upvote'  slug=question.slug %}" class="btn btn-secondary active"
+                                           role="button" data-mdb-toggle="button" aria-pressed="true">Upvote</a>
+                                    {% endif %}
+                                {% csrf_token %}
+                                    {% if downvote %}
+                                        <a href="{% url 'ask:downvote' slug=question.slug  %}" class="btn btn-success active"
+                                           role="button" data-mdb-toggle="button" aria-pressed="true">Downvoted</a>
+                                    {% else %}
+                                        <a href="{% url 'ask:downvote'  slug=question.slug %}" class="btn btn-secondary active"
+                                           role="button" data-mdb-toggle="button" aria-pressed="true">Downvote</a>
+                                    {% endif %}
+                              </form>
+                            up={{ up_count }},down={{ down_count }}
+                          </div>
+                        </div>
+
+
+    <ul class="list-group list-group-flush">
+        {% for comment in question_comments %}
+            <li class="list-group-item">{{ comment.content}}
+                <br>
+                {{ comment.created_date|timesince }} once - {{ comment.user }} tarafından</li>
+        {% endfor %}
+    </ul>
+
+
+
+            </div>
+            <div class="col">
+
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}

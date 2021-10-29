@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+{% block body%}
+
+<div class="container" style=" padding-left: 60px; padding-right: 50px">
+  <div class="row">
+    <div class="col-md" style="padding-top: 50px">
+
+        {% for space in space_list %}
+            <a href="{% url 'space:askinspace' slug=space.slug %} }}">
+            <button type="button"  class="btn btn-light position-relative" style="width: 250px; text-transform: capitalize">
+            {{ space.title }}
+            </button>
+            </a>
+        <div style="padding-bottom: 1px"></div>
+            <br>
+         {% endfor %}
+    </div>
+    <div class="col-md"  style="padding-top: 50px">
+
+                <div style="padding-bottom: 30px"></div>
+
+                {% for question in following_space_questions %}
+                        <div class="card" style="width: 40rem; height: auto" >
+                          <div class="card-body" style="background-color : #ffffff;">
+                           <small>{{ question.user.get_full_name }} asked</small>
+
+                          {% if question in space_question_list.all %}
+                              in <small style="text-transform: uppercase">{{ question.category}}</small>
+                               <a  href="{% url 'space:detail' slug=question.slug %}" style="color: #000000; text-decoration-line: none">
+                                 <h5 class="card-title">{{ question.question }}</h5><br>
+                            </a>
+                               <br><br>
+                                 <p align="left">
+                                <a href="{% url 'space:detail' slug=question.slug %}" >
+                                    <svg width="24px" height="24px" viewBox="0 0 24 24"><g id="comment"  class="icon_svg-stroke icon_svg-fill" stroke="#666" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M12.0711496,18.8605911 C16.1739904,18.8605911 19.5,15.7577921 19.5,11.9302955 C19.5,8.102799 16.1739904,5 12.0711496,5 C7.96830883,5 4.64229922,8.102799 4.64229922,11.9302955 C4.64229922,13.221057 5.02055525,14.429401 5.67929998,15.4641215 C5.99817082,15.9649865 4.1279592,18.5219189 4.56718515,18.9310749 C5.02745574,19.3598348 7.80252458,17.6358115 8.37002246,17.9406001 C9.45969688,18.5258363 10.7235179,18.8605911 12.0711496,18.8605911 Z"></path></g></svg>
+                                </a>
+                              </p>
+                              {% if question.user == request.user %}
+                              <a href="{% url 'space:delete' slug=question.slug %}" style="float: right">
+                                   <button type="button"  class="btn btn-dark position-relative" style="width: 100px; text-transform: capitalize">
+                                  delete </button>
+                              </a>
+
+                              <a href="{% url 'space:update' slug=question.slug %}" style="float: right">
+                                  <button type="button"  class="btn btn-secondary position-relative" style="width: 100px;  text-transform: capitalize">
+                                  update </button>
+                              </a>
+                              {% endif %}
+
+                          {% else %}
+                               <a  href="{% url 'ask:detail' slug=question.slug %}" style="color: #000000; text-decoration-line: none">
+                                 <h5 class="card-title">{{ question.question }}</h5><br>
+                                </a>
+                               <br><br>
+                                 <p align="left">
+                                <a href="{% url 'ask:detail' slug=question.slug %}" >
+                                    <svg width="24px" height="24px" viewBox="0 0 24 24"><g id="comment"  class="icon_svg-stroke icon_svg-fill" stroke="#666" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M12.0711496,18.8605911 C16.1739904,18.8605911 19.5,15.7577921 19.5,11.9302955 C19.5,8.102799 16.1739904,5 12.0711496,5 C7.96830883,5 4.64229922,8.102799 4.64229922,11.9302955 C4.64229922,13.221057 5.02055525,14.429401 5.67929998,15.4641215 C5.99817082,15.9649865 4.1279592,18.5219189 4.56718515,18.9310749 C5.02745574,19.3598348 7.80252458,17.6358115 8.37002246,17.9406001 C9.45969688,18.5258363 10.7235179,18.8605911 12.0711496,18.8605911 Z"></path></g></svg>
+                                </a>
+                              </p>
+                                {% if question.user == request.user %}
+                              <a href="{% url 'ask:delete' slug=question.slug %}" style="float: right">
+                                   <button type="button"  class="btn btn-dark position-relative" style="width: 100px; text-transform: capitalize">
+                                  delete </button>
+                              </a>
+
+                              <a href="{% url 'ask:update' slug=question.slug %}" style="float: right">
+                                  <button type="button"  class="btn btn-secondary position-relative" style="width: 100px;  text-transform: capitalize">
+                                  update </button>
+                              </a>
+                              {% endif %}
+                          {% endif %}
+
+                          </div>
+                        </div>
+                        <div style="padding-bottom: 25px"></div>
+                {% endfor %}
+
+
+    </div>
+
+
+    <div class="col-md" style="padding-top: 50px">
+
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}
+ </html>

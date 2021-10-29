@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block body%}
+
+
+<div class="card text-center" style="width: 60rem; margin-left: 200px; height: auto">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+        <a class="nav-link disabled" href="" tabindex="-1" aria-disabled="true">Followings</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ profile.user.get_full_name}}'s Followings</h5>
+    <p class="card-text">
+
+        <div class="container">
+          <div class="row">
+            <div class="col">
+                <a href="#" class="btn btn-primary disabled" style="width: 250px" tabindex="-1" aria-disabled="true" role="button" data-bs-toggle="button">FOLLOWING SPACES</a>
+                     <div style="padding-top: 20px"></div>
+                  <ul class="list-group list-group-flush">
+                    {% for follow in following %}
+                        <li class="list-group-item" style="text-transform: capitalize">{{ follow.title }}</li>
+                    {% endfor %}
+                  </ul>
+            </div>
+            <div class="col">
+                <a href="#" class="btn btn-primary disabled" style="width: 250px" tabindex="-1" aria-disabled="true" role="button" data-bs-toggle="button">FOLLOWING USER</a>
+                     <div style="padding-top: 20px"></div>
+                  <ul class="list-group list-group-flush">
+                    {% for follow in follows %}
+                        <li class="list-group-item">{{ follow.get_full_name }}</li>
+                    {% endfor %}
+                  </ul>
+            </div>
+              <div class="col">
+                <a href="#" class="btn btn-primary disabled" style="width: 250px" tabindex="-1" aria-disabled="true" role="button" data-bs-toggle="button">FOLLOWERS</a>
+                     <div style="padding-top: 20px"></div>
+                  <ul class="list-group list-group-flush">
+                    {% for follow in followers %}
+                        <li class="list-group-item">{{ follow.get_full_name }}</li>
+                    {% endfor %}
+                  </ul>
+            </div>
+          </div>
+        </div>
+      </p>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block body%}
+
+
+<div class="container" style="padding-top: 50px">
+  <div class="row">
+    <div class="col">
+
+    </div>
+    <div class="col">
+            {% for question in combined_question %}
+            <div class="card" style="width: 40rem; height: 300px" >
+              <div class="card-body" style="background-color : #ffffff;">
+                    <small>{{ request.user.get_full_name }} asked</small>
+                  <br><br>
+                <h5 class="card-title">{{ question.question }}</h5><br>
+              </div>
+            </div>
+            <div style="padding-bottom: 25px"></div>
+    {% endfor %}
+
+
+    </div>
+    <div class="col">
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block body%}
+<div class="container">
+  <div class="row row-cols-4">
+    {% for space in space_list %}
+       <div class="col" style="padding-top: 30px">
+                <div class="card" style="background-color: #ffffff">
+                  <div class="card-body" >
+                      <a href="{% url 'space:askinspace' slug=space.slug %} }}">
+                        <button type="button" class="btn btn-light position-relative" style="text-transform: uppercase; width: 270px;background-color: #d7d9d7">
+                        {{ space.title }}
+                        </button>
+                    </a>
+
+                  </div>
+                </div>
+        </div>
+      {% endfor %}
+    </div>
+</div>
+{% endblock %}

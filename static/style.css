@@ -1,0 +1,9 @@
+.space_button{
+width: 250px;text-transform: capitalize;background-color: Transparent;color: black;
+}
+
+.space_button:hover{
+background-color: rgba(128, 128, 128, 0.25);
+    color: white;
+}
+
