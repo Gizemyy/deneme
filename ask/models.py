@@ -4,14 +4,14 @@ from django.utils import timezone
 from django.utils.text import slugify
 from spaces.models import Spaces
 from django.contrib.auth.models import User
-
+from cloudinary.models import CloudinaryField
 
 class Question(models.Model):
     user = models.ForeignKey('auth.User', verbose_name="yazar", on_delete=models.CASCADE, related_name='questions')
     question = models.CharField(max_length=120, verbose_name="Soru")
     publishing_date = models.DateTimeField(verbose_name="Yayınlanma tarihi", default=timezone.now)
     slug = models.SlugField(max_length=130, unique=True, editable=False)
-    picture = models.ImageField(upload_to='question_pictures', blank=True, verbose_name='picture')
+    picture = CloudinaryField('image')
     upvoters = models.ManyToManyField(User, related_name="upvoters", blank=True)
     downvoters = models.ManyToManyField(User, related_name="downvoters", blank=True)
 
