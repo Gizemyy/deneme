@@ -26,9 +26,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$vd^c8^#r4@@i!kc+cl+ljwu25+e9b5@d8dv6s23^zcy1wo8%^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['quora-live.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['deneme.herokuapp.com','127.0.0.1']
 
 
 # Application definition
