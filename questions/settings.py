@@ -85,10 +85,10 @@ WSGI_APPLICATION = 'questions.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dhflrqtib8l4u',
-        'USER': 'frpvdmxznblvxm',
-        'PASSWORD': 'ff1f8de10f9abb7f8c6cb02b51aa7bcec76773f4512068262284464a702e559c',
-        'HOST': 'ec2-79-125-30-28.eu-west-1.compute.amazonaws.com',
+        'NAME': 'dff3db5676o6sk',
+        'USER': 'woedjxswgziduy',
+        'PASSWORD': '8435b053f35c9cc46096564a062c7bf98dccad6adeac7df1beb8b824cf200af4',
+        'HOST': 'ec2-52-209-246-87.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
     }
 }
