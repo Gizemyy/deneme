@@ -10,9 +10,6 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 
 import os
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -44,7 +41,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'accounts',
     'spaces',
-    'cloudinary',
+  
 ]
 
 
@@ -92,11 +89,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-cloudinary.config(
-  cloud_name="djnepohtm",
-  api_key="684785267242417",
-  api_secret="VzRuXx6lbep8fSYEtYPnPi0QsHg"
-)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
