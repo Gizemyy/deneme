@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,7 +28,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$vd^c8^#r4@@i!kc+cl+ljwu25+e9b5@d8dv6s23^zcy1wo8%^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['qquaraa.herokuapp.com/','127.0.0.1']
 
@@ -41,6 +46,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'accounts',
     'spaces',
+    'cloudinary',
   
 ]
 
@@ -55,6 +61,13 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
+cloudinary.config(
+  cloud_name="djnepohtm",
+  api_key="684785267242417",
+  api_secret="VzRuXx6lbep8fSYEtYPnPi0QsHg"
+)
 
 ROOT_URLCONF = 'questions.urls'
 
