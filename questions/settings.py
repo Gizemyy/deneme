@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'accounts',
     'spaces',
     'cloudinary',
+    
   
 ]
 
@@ -63,11 +64,14 @@ MIDDLEWARE = [
 ]
 
 
-cloudinary.config(
-  cloud_name="djnepohtm",
-  api_key="684785267242417",
-  api_secret="VzRuXx6lbep8fSYEtYPnPi0QsHg"
-)
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'djnepohtm',
+    'API_KEY': '684785267242417',
+    'API_SECRET': 'VzRuXx6lbep8fSYEtYPnPi0QsHg',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 ROOT_URLCONF = 'questions.urls'
 
